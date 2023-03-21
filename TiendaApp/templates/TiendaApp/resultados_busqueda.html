@@ -1,0 +1,36 @@
+{% extends "TiendaApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado_Busquedas</title>
+</head>
+<div class= container>
+<body style="color: antiquewhite;">
+    {% if productos %}
+    <p>estamos buscando: {{Producto}}</p>
+    <ul>
+        {% for producto in productos %}
+        <li>{{producto.marca}}</li>
+        <li>{{producto.modelo}}</li>
+        <li>{{producto.precio}}</li>
+
+        {% endfor %}
+    </ul>
+
+    {% endif %}
+
+</body>
+</div>
+
+</html>
+
+{% endblock %}

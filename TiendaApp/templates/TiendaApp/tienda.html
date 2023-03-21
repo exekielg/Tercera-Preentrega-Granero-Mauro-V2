@@ -1,0 +1,26 @@
+{% extends "TiendaApp/base.html" %}
+
+    {% load static %}
+
+        {% block content %}
+        <div class="container">
+            <div class="row">
+                {% for Producto in Productos %}
+                    <div class="card" style="width: 45%;">
+            
+                    <img src="{{Producto.imagen.url}}" alt="">
+            
+                        <div class="card-body" style="text-align: center;">
+                        <h7 class="card-title"> {{Producto.marca}}</h7>
+                        <p class="card-text">{{Producto.modelo}}</p>
+                        <p class="card-text">&nbsp;$ {{Producto.precio}}</p>
+
+                        </div>
+                       
+            
+                    </div>
+
+            {% endfor %}
+            </div>
+        </div>
+        {% endblock %}
