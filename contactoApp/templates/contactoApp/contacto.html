@@ -1,0 +1,35 @@
+{% extends "TiendaApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="contenedorFormulario">
+<h2 style="color: azure;" >Dejanos un Mensaje y un asesor se contactara con vos</h2>
+
+  <div class="conteiner"> 
+    <div class="col-md-1"> 
+      <form action="" method="POST" style="align-items: center;" >
+        {% csrf_token %}
+        <!--{% if mensaje %}
+          <div class="alert alert-success" role="alert">
+            Tu mensaje ha sido Enviado con Exito!!!
+          </div>
+        {% endif %}-->
+
+        <div style="color: azure; margin: 20px auto;" >
+        {{miformulario.as_p}} 
+          <button  type="submit" class="btn btn-Warning"   style="width: 150px;">Enviar</button>
+            </div>
+          </div>
+      </div>
+  </form>
+
+</div>
+<div>
+
+</div>
+
+
+
+{% endblock %}

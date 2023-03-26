@@ -36,8 +36,7 @@ def tienda(request):
     producto = Producto.objects.all()
     return render(request, 'TiendaApp/tienda.html', {"Productos": producto})
 
-def contacto(request):
-        return render(request, 'TiendaApp/contacto.html')
+
 
 
 # buscar producto Auto, por marca
