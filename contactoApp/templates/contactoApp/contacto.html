@@ -5,6 +5,13 @@
 {% block content %}
 
 <div class="contenedorFormulario">
+  
+  {% if "okmensaje" in request.GET %}
+  <div class="alert alert-success" role="alert">
+    Mensaje enviado con Exito!!!
+  </div>
+  {% endif %}
+
 <h2 style="color: azure;" >Dejanos un Mensaje y un asesor se contactara con vos</h2>
 
   <div class="conteiner"> 
