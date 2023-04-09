@@ -1,0 +1,58 @@
+{% extends "TiendaApp/base.html" %}
+
+{% load static %}
+
+<!-- Cargar app widgets Tweaks -->
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="container mt-5" style="margin-bottom: 10%;">
+  <div  class="row d-flex justify-content-center">
+      <div class="col-md-6">
+        <div class="card px-5 py-5" style="background-color: rgba(41, 38, 38, 0.699);">
+              <h2 style="color: rgb(252, 250, 249); text-align: center;"> Envianos un Mensaje y nos contactaremos   </h2>
+              {% if mensaje %}
+                <div class="alert alert-success"> Mensaje Enviado con Exito!!</div>
+                {% endif %}
+  
+                  <form method="post" style="color: antiquewhite;">
+                    {% csrf_token %}
+                    <div class="form-group">
+                    <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
+                    {% render_field form.nombre class+="form-control" %}
+                    </div>
+                    <div class="form-group">
+                      <label for="{{ form.apellido.id_for_label }}">Apellido:</label>
+                      {% render_field form.apellido class+="form-control" %}
+                    </div>
+                    <div class="form-group">
+                      <label for="{{ form.email.id_for_label }}">e-mail:</label>
+                      {% render_field form.email class+="form-control" %}
+                    </div>
+                    <div class="form-group">
+                      <label for="{{ form.telefono.id_for_label }}">Telefono:</label>
+                      {% render_field form.telefono class+="form-control" %}
+                    </div>
+                    <div class="form-group">
+                      <label for="{{ form.mensaje.id_for_label }}"> Tu Mensaje:</label>
+                      {% render_field form.mensaje class+="form-control" %}
+                    </div>
+                
+                    <button type="submit" class="btn btn-warning">Enviar Mensaje</button>
+                    </form>
+
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+

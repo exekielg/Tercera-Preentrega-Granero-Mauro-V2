@@ -21,3 +21,5 @@ admin.site.register(Producto, Prod_Admin)
 admin.site.register(Cliente, Cliente_Admin)
 
 
+
+

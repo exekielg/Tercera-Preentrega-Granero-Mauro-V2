@@ -33,7 +33,6 @@ def clientes(request):
     return render(request, 'TiendaApp/clientes.html', {'form': form})
 
 
-
 @login_required
 def tienda(request):
     producto = Producto.objects.all()

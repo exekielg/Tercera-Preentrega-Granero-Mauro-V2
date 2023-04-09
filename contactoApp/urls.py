@@ -4,7 +4,7 @@ from contactoApp import views
 
 
 urlpatterns = [
-    path('contacto/',views.contacto, name='Contacto'),
+    path('nuevo_contacto', views.nuevo_contacto, name='Contacto'),
     
 ]
 

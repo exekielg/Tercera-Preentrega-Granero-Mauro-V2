@@ -45,10 +45,17 @@
           </li>  
           <li class="nav-item px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'Clientes' %}">Clientes</a>
-          </li>           
+          </li>
+          <li class="nav-item active px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Login' %}">Login</a>
+          </li>
+          <li class="nav-item active px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Register' %}">Registrarse</a>
+          </li>
           <li class="nav-item px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'Contacto' %}">Contacto</a>
-          </li>        
+          </li>
+          <p style="color: aliceblue; text-align: right; margin-right: 10%;"> Usuario: {{ user.username }} </p>                
         </ul>
       </div>
     </div>

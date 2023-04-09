@@ -7,6 +7,8 @@
 
 {% block content %}
 
+
+
 <div class="container mt-5" style="margin-bottom: 10%;">
   <div  class="row d-flex justify-content-center">
     <div class="col-md-6">
@@ -25,13 +27,20 @@
                           </div>
                           {% endfor %}
                 <button type="submit" class="btn btn-warning ">Login</button>
+                <p></p>
+                {% if form.errors %}
+                <div style="color: rgb(53, 54, 43);"   class="alert alert-danger" role="alert"  >
+                    Por favor, ingrese un usuario y contraseña válidos.
+              </div>
+                {% endif %}
+
             </form>
         </div>
       </div>
     </div>
 </div>
 
-    
+
 
 
 

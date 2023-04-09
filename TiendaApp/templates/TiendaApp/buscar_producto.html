@@ -2,8 +2,12 @@
 
 {% load static %}
 
+<!-- Cargar app widgets Tweaks -->
+{% load widget_tweaks %}
+
 {% block content %}
 
+ <!-- Marco con Card -->
 <div class="container mt-5" style="margin-bottom: 10%;">
     <div  class="row d-flex justify-content-center">
         <div class="col-md-6">
@@ -11,13 +15,37 @@
                 <h2 style="color: rgb(252, 250, 249); text-align: center;">   Busque aqui dentro de la Tienda   </h2>
                   <p></p>
 
+ <!-- Inicio Formulario de busqueda y fields formateados con Widget Tweaks -->
+
             <form style="color: antiquewhite ;" method="POST" action="">
-                {% csrf_token %}
-                {{ form.as_p }}
+                {% csrf_token %}    
+
+                <div class="form-group">
+                    <label for="{{ form.marca.id_for_label }}">Marca:</label>
+                    {% render_field form.marca class="form-control" %}
+                    {{ form.marca.errors }}
+                  </div>
+                <div class="form-group">
+                    <label for="{{ form.modelo.id_for_label }}">Modelo:</label>
+                    {% render_field form.modelo class="form-control" %}
+                    {{ form.marca.errors }}
+                    </div>
+                <div class="form-group">
+                    <label for="{{ form.precio_max.id_for_label }}">Precio Máximo:</label>
+                    {% render_field form.precio_max class="form-control" type="number" step="0.01" %}
+                    {{ form.precio_max.errors }}
+                    </div>
+                <div class="form-group">
+                    <label for="{{ form.precio_min.id_for_label }}">Precio Mínimo:</label>
+                    {% render_field form.precio_min class="form-control" type="number" step="0.01" %}
+                    {{ form.precio_min.errors }}
+                  </div>
+            
                 <button type="submit" class="btn btn-warning">Buscar</button>
     
             </form>
 
+ <!-- Seccion de Resultados de la Busqueda -->
                 {% if products %}
                 <div class="card" style="background-color: rgba(207, 192, 55, 0.856);">
                     <p></p>
@@ -27,11 +55,11 @@
                         <li>{{ product.marca }} {{ product.modelo }} - Precio: ${{ product.precio }}</li>
                     {% endfor %}
                     </ul>
-                
                 {% endif %}
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}

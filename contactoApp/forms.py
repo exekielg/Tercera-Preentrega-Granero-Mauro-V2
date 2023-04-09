@@ -1,10 +1,9 @@
 from django import forms
+from .models import Contacto
 
-class formcontacto(forms.Form):
-    nombre =forms.CharField(label='Nombre', max_length=100)
-    cel =forms.CharField(label='Celular', max_length=30)
-    email = forms.EmailField(label='Email')
-    mensaje = forms.CharField(label='Mensaje',widget=forms.Textarea)
-
+class ContactoForm(forms.ModelForm):
+    class Meta:
+        model = Contacto
+        fields = ['nombre', 'apellido', 'email', 'telefono','mensaje']
     
 
