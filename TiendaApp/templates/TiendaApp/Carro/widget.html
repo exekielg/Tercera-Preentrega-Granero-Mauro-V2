@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<div style="margin-right: 75px;" >
+<table  class="table table-dark table-hover table-bordered" style="color:rgba(238, 238, 30, 0.692);">
+     <thead>
+         <tr>
+             <th colspan="3" class="text-center">
+                Tu Carrito
+             </th>
+         </tr>
+         <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Importe</th>
+         </tr>
+    </thead>
+</table>
+
+<tbody>
+    {% if request.session.carrito.items %}
+         {% for key, value in request.session.carrito.items %}
+         
+        <tr class="text-center">
+            
+            <td>{{value.nombre}}</td>
+            <td>{{value.cantidad}}</td>
+            
+
+        </tr>
+         
+         {% endfor %}
+
+     {% else %}
+        <tr>
+            <td colspan="2">
+                <div class="table-warning alert-warning" style="text-align: center;" >
+                     Sin productos
+                </div>
+            </td>
+        </tr>
+    {% endif %}
+</tbody>
+
+</div>
+
+
+
+

@@ -14,13 +14,6 @@ def contacto(request):
                 mensaje=request.POST.get("Mensaje")
 
                 return redirect("/contacto/?okmensaje") #redirecciona a misma pagina contacto pasando por parametro el mensaje de validacion
-
-
-                
-        
-        
-
-
         return render(request, 'contactoApp/contacto.html', {'miformulario':formulario_contacto})
 
 

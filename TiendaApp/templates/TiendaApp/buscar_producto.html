@@ -4,15 +4,34 @@
 
 {% block content %}
 
-<div class="container">
-    <h1 style="color: antiquewhite;">--Busque aqui un Auto por Marca del Fabricante--</h1>
-<form style="color: antiquewhite ;" method="POST" action="">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit" class="btn btn-primary">Buscar</button>
+<div class="container mt-5" style="margin-bottom: 10%;">
+    <div  class="row d-flex justify-content-center">
+        <div class="col-md-6">
+          <div class="card px-5 py-5" style="background-color: rgba(41, 38, 38, 0.699);">
+                <h2 style="color: rgb(252, 250, 249); text-align: center;">   Busque aqui dentro de la Tienda   </h2>
+                  <p></p>
+
+            <form style="color: antiquewhite ;" method="POST" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-warning">Buscar</button>
     
-</form>
+            </form>
 
+                {% if products %}
+                <div class="card" style="background-color: rgba(207, 192, 55, 0.856);">
+                    <p></p>
+                <h2 style="color: rgb(43, 41, 40);">Resultados de la búsqueda:</h2>
+                    <ul style="color: rgb(238, 234, 229);">
+                    {% for product in products %}
+                        <li>{{ product.marca }} {{ product.modelo }} - Precio: ${{ product.precio }}</li>
+                    {% endfor %}
+                    </ul>
+                
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
 {% endblock %}

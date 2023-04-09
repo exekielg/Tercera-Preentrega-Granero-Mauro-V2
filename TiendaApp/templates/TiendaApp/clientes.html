@@ -2,30 +2,51 @@
 
 {% load static %}
 
+{% load widget_tweaks %}
+
 {% block content %}
+  
+<h1>Agregar Cliente</h1>
 
-    {% if form.errors %}
-    <div class="alert alert-warning" role="alert">
-        Error, por favor Verifique !!
+
+<div class="container mt-5" style="margin-bottom: 10%;">
+    <div  class="row d-flex justify-content-center">
+        <div class="col-md-6">
+          <div class="card px-5 py-5" style="background-color: rgba(41, 38, 38, 0.699);">
+                <h2 style="color: rgb(252, 250, 249); text-align: center;">   Crear Cliente Nuevo   </h2>
+                {% if mensaje %}
+                <div class="alert alert-success"> Cliente Agregado con Exito!!</div>
+                {% endif %}
+
+                    <form method="post" style="color: antiquewhite;">
+                        {% csrf_token %}
+                        <div class="form-group">
+                        <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
+                        {% render_field form.nombre class+="form-control" %}
+                        </div>
+                        <div class="form-group">
+                        <label for="{{ form.apellido.id_for_label }}">Apellido:</label>
+                        {% render_field form.apellido class+="form-control" %}
+                        </div>
+                        <div class="form-group">
+                        <label for="{{ form.direccion.id_for_label }}">Direccion:</label>
+                        {% render_field form.direccion class+="form-control" %}
+                        </div>
+                        <div class="form-group">
+                        <label for="{{ form.telefono.id_for_label }}">Telefono:</label>
+                        {% render_field form.telefono class+="form-control" %}
+                        </div>
+                        <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">Email:</label>
+                        {% render_field form.email class+="form-control" %}
+                        </div>
+                        <button type="submit" class="btn btn-warning">Agregar Cliente</button>
+                        
+                    </form>
+            </div>
+        </div>
     </div>
-    {% endif %}
-    
-    <div class="container">
-        <h1 style="color: antiquewhite;">Agregar Cliente Nuevo</h1>
-    </div>
-        <p> </p>
-    <form style="color: antiquewhite;"  method="post">
-        {% csrf_token %}
-        {% if mensaje %}
-        <div class="alert alert-success" role="alert">
-            Cliente Agregado con Exito!!!
-          </div>
-        {% endif %}
-
-
-        {{ form }}
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    
-      </form>
+</div>
+                    
 
 {% endblock %}
