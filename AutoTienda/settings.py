@@ -67,7 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'CarritoApp.Context_Processor.importe_total_carro',
+                'CarritoApp.Context_Processor.carrito',
             ],
         },
     },
@@ -131,4 +131,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = '/TiendaApp/registration/login.html/'
+LOGIN_URL = 'Login'
+LOGIN_REDIRECT_URL = 'Home'

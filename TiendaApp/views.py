@@ -14,7 +14,8 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request, 'TiendaApp/home.html')
 
-
+# Vista para Agregar nuevos Clientes a la BD
+@login_required
 def clientes(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
@@ -33,6 +34,7 @@ def clientes(request):
     return render(request, 'TiendaApp/clientes.html', {'form': form})
 
 
+# Tienda de Productos
 @login_required
 def tienda(request):
     producto = Producto.objects.all()
@@ -41,7 +43,8 @@ def tienda(request):
 
 
 
-# buscar producto Auto, por marca
+# Buscar producto Auto, por marca
+@login_required
 def buscar_producto(request):
     if request.method == 'POST':
         form = ProductSearchForm(request.POST)
@@ -72,7 +75,7 @@ def buscar_producto(request):
 
     return render(request, 'TiendaApp/buscar_producto.html', context)
 
-
+# Solicitud de Login
 def login_request(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
@@ -91,7 +94,7 @@ def login_request(request):
     return render(request,"TiendaApp/registration/login.html", {'form':form})
 
 
-
+# Registro de Nuevo Usuario
 def register(request):
     if request.method == 'POST':
         form= UserCreationForm(request.POST)
@@ -104,4 +107,9 @@ def register(request):
         form = UserCreationForm()
         #form = UserRegisterForm()
     return render(request, "TiendaApp/registration/registro.html", {"form":form})
+
+# Sale de la Cuenta logeada
+def logout_view(request):
+    logout(request)
+    return redirect('Home')
 
