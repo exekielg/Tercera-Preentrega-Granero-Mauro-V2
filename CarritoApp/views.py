@@ -19,43 +19,21 @@ def agregar_producto(request, producto_id):
     return redirect('Tienda')
 
 
-def ver_carrito(request):
-    carrito = request.session.get('carrito', [])
-    total = sum([p['precio'] for p in carrito])
-    return render(request, 'carrito.html', {'carrito': carrito, 'total': total})
-
-
-
-
-'''def agregar_producto(request,producto_id):
-   carro=Carrito(request)
-   producto=Producto.objects.get(id=producto_id)
-   carro.agregar(producto=producto)   #agregar del carrito.py
-   return redirect('Tienda')      #redirigir a Tienda'''
-
-'''def eliminar_producto(request,producto_id):
-   carro=Carrito(request)
-   producto=Producto.objects.get(id=producto_id)
-   carro.eliminar(producto=producto)    # func del carrito.py
-   return redirect('Tienda')    #redirigir a Tienda '''
-
-def eliminar_producto(request, producto_id):
-    if 'carrito' in request.session:
-        carrito = request.session['carrito']
-        for item in carrito:
-            if item['id'] == producto_id:
-                carrito.remove(item)
-        request.session['carrito'] = carrito
-    return redirect('carrito')
+def eliminar_prod(request, producto_id):
+    carrito = request.session.get['carrito'], []  
+    if producto_id in carrito:  
+        del carrito[producto_id]  
+        request.session['carito'] = carrito  
+    return redirect('Tienda')  
 
 
 def restar_producto(request,producto_id):
    carro=Carrito(request)
    producto=Producto.objects.get(id=producto_id)
-   carro.restar_prod(producto=producto)    # func del carrito.py
-   return redirect('Tienda')    #redirigir a Tienda
+   carro.restar_prod(producto=producto)   
+   return redirect('tienda')    
 
-def limpiar_carrito(request,producto_id):
-   carro=Carrito(request)
-   carro.clear_carrito
-   return redirect('Tienda')    #redirigir a Tienda
+def limpiar_carrito(request):
+   carrito=Carrito(request)
+   carrito.clear_carrito
+   return render(request,'TiendaApp/tienda.html')   

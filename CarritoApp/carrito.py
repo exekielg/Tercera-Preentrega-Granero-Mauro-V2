@@ -5,13 +5,13 @@ from TiendaApp.models import Producto
 
 class Carrito:
      def _init_(self, request):
-        '''self.request=request
+        self.request=request
         self.session=request.session
         carrito=self.session.get("carrito")
         if not carrito:
             carrito=self.session["carrito"]= {}
-        else:'''
-        self.carrito=carrito
+        else:
+            self.carrito=carrito
 
      def agregar(self, producto):
         if(str(producto.id) not in self.carrito.keys()):
