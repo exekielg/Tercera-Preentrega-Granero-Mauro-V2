@@ -15,9 +15,13 @@ urlpatterns = [
     path('login', views.login_request, name = 'Login'),
     path ('register', views.register, name = 'Register'),
     path('logout/', views.logout_view, name='Logout'),
+    path('productos/', views.producto_list, name='productos'),
+    path('agregar_producto/', views.agregar_producto, name='agregar_producto'), # Producto nuevo a la BD
+    path('editar_producto/<int:producto_id>/', views.editar_producto, name='editar_producto'), #Editar un Prod de la BD
+    path('eliminar_producto/<int:producto_id>/', views.eliminar_producto, name='eliminar_producto') # Eliminar un Producto de la BD
 
 
-    
+   
     
 ]
 

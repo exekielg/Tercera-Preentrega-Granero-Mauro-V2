@@ -1,0 +1,43 @@
+{% extends "TiendaApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container mx-auto mt-4">
+  <h2 style="color: aliceblue; text-align: center;">Listado Productos de la Tienda</h2>
+    <a href="{% url 'agregar_producto' %}" class="btn btn-success mt-3"  style="text-align: right;"  >Nuevo producto</a>
+                  <!--Bloque de Mensajes-->
+                  {% if messages %}
+                  <h4 class="table-warning" style="color: rgba(240, 90, 90, 0.986); text-align: center;">
+                      {% for message in messages %}
+                          <p {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }} !!!</p>
+                      {% endfor %}
+                    </h4>
+                    {% endif %}              
+                    <!--Fin de Mensajes-->
+  {% for producto in productos %}
+    <div class="card" style="background-color: rgb(78, 77, 77);">
+        <div class="card-body" style="color: aliceblue;">
+        <h5 class="card-title">{{ producto.marca }} {{ producto.modelo }}</h5>
+        <p class="card-text">{{ producto.modelo }}</p>
+        <p class="card-text"><strong>Precio:</strong> $ {{ producto.precio }}</p>
+        <p><a href=" {{producto.imagen.url}}">Imagen Producto</a></p>
+        <a href="{% url 'editar_producto' producto_id=producto.id %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'eliminar_producto' producto_id=producto.id %}" class="btn btn-danger">Eliminar</a>
+      </div>
+      <p></p>
+    </div>
+  {% empty %}
+    <p>No hay productos</p>
+  {% endfor %}
+</div>
+
+   
+{% endblock %}
+
+
+
+
+
+

@@ -16,5 +16,10 @@ class ClienteForm(forms.Form):
     direccion = forms.CharField(label='Direccion',max_length=100)
     telefono = forms.CharField(label='Teléfono', max_length=20)
     email = forms.EmailField(label='Correo electrónico', max_length=100)
-    
-    
+
+
+# form para Crear nvo Prod
+class ProductoForm(forms.ModelForm):
+    class Meta:
+        model = Producto
+        fields = ['marca', 'modelo', 'Categorias', 'imagen', 'precio', 'disponible']

@@ -1,11 +1,10 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.utils.http import urlencode
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Categoria_Producto, Producto, Cliente
-from .forms import ClienteForm, ProductSearchForm
+from .forms import ClienteForm, ProductSearchForm, ProductoForm
 from django.contrib.auth. forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 
@@ -113,3 +112,48 @@ def logout_view(request):
     logout(request)
     return redirect('Home')
 
+# Listado de Productos para CRUD
+@login_required
+def producto_list(request):
+    productos = Producto.objects.all()
+    return render(request, 'TiendaApp/productos/producto_list.html', {'productos': productos})
+
+
+# Crear un nuevo Producto a la BD
+@login_required
+def agregar_producto(request):
+    if request.method == 'POST':
+        form = ProductoForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect('productos')
+    else:
+        form = ProductoForm()
+
+    return render(request, 'TiendaApp/productos/agregar_producto.html', {'form': form})
+
+# Editar un producto de la BD
+@login_required
+def editar_producto(request, producto_id):
+    producto = Producto.objects.get(pk=producto_id)
+
+    if request.method == 'POST':
+        form = ProductoForm(request.POST, request.FILES, instance=producto)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'PRODUCTO EDITADO.')
+            return redirect('productos')
+    else:
+        form = ProductoForm(instance=producto)
+
+    return render(request, 'TiendaApp/productos/editar_producto.html', {'form': form})
+
+# Eliminar un Porducto de la BD
+@login_required
+def eliminar_producto(request, producto_id):
+    producto = get_object_or_404(Producto, pk=producto_id)
+    producto.delete()
+    messages.success(request, 'PRODUCTO ELIMINADO.')
+    return redirect('productos')
